@@ -1,17 +1,21 @@
 //your code here
-Particle[] ketchUp;
+Particle [] ketchUp;
+
 
 void setup() {
   size(800, 800);
   ketchUp = new Particle[500];
-  for(int i = 0; i < ketchUp.length; i++) {
+  for(int i = 0; i < 100; i++) {
+    ketchUp[i] = new OddballParticle();
+  }
+  for(int i = 100; i < ketchUp.length; i++) {
     ketchUp[i] = new Particle();
   }
 }
 
 
 void draw() {
-    background(255, 255, 255, 200);
+    background(0, 0, 0, 200);
     for(int i = 0; i < ketchUp.length; i++) {
     ketchUp[i].move();
     ketchUp[i].show();
@@ -42,6 +46,14 @@ class Particle {
 
 class OddballParticle extends Particle {//inherits from Particle
   OddballParticle() {
-  //your code here
+    X = 400;
+    Y = 400;
+    A = (Math.random()*Math.PI*2);
+    S = (Math.random()+0.5);
+    C = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+  }
+  void show() {
+    fill(C);
+    rect((float)X, (float)Y, 10, 10);
   }
 }
